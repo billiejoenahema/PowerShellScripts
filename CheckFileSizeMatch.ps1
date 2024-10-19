@@ -1,19 +1,26 @@
-# 2ã¤ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¦ã„ã‚‹ã“ã¨ç¢ºèªã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+# 2‚Â‚Ìƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ªˆê’v‚µ‚Ä‚¢‚é‚±‚ÆŠm”F‚·‚éƒXƒNƒŠƒvƒg
 
-# å¤‰æ•°è¨­å®š
-$localFilePath = "C:\path\to\local\file.txt"
+# •Ï”İ’è
+$localFilePath = "C:\Users\Billie\Documents\recovery_code.txt"
 $remoteServer = "user@remote-server.com"
-$remoteFilePath = "/path/to/remote/file.txt"
+$remoteFilePath = "C:\Users\Billie\Documents\recovery_code_copy.txt"
 
-# ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
+# ƒ[ƒJƒ‹ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾
 $localFileSize = (Get-Item $localFilePath).Length
 
-# ãƒªãƒ¢ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾— (SSHæ¥ç¶šã‚’ä½¿ç”¨)
-$remoteFileSize = ssh $remoteServer "stat -c%s $remoteFilePath"
+# ƒŠƒ‚[ƒgƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾ (SSHÚ‘±‚ğg—p)
+# $remoteFileSize = ssh $remoteServer "stat -c%s $remoteFilePath"
+$remoteFileSize = (Get-Item $remoteFilePath).Length
 
-# ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’æ¯”è¼ƒ
-if ($localFileSize -eq $remoteFileSize) {
-    Write-Host "ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã¯ä¸€è‡´ã—ã¦ã„ã¾ã™ã€‚"
-} else {
-    Write-Host "ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“ã€‚ãƒ•ã‚¡ã‚¤ãƒ«ã®è»¢é€ã«å¤±æ•—ã—ã¦ã„ã¾ã™ã€‚"
+Write-Host "“]‘—Œ³: ${localFileSize}"
+Write-Host "“]‘—æ: ${remoteFileSize}"
+
+# ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ”äŠr
+if ($localFileSize -ne $remoteFileSize) {
+    Write-Host "“]‘—Œ³‚Æ“]‘—æ‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñB" -ForegroundColor Red
+    .\DesktopNotification.ps1 -message "Error: ƒtƒ@ƒCƒ‹“]‘—¸”s"
+    exit
 }
+
+Write-Host "“]‘—Œ³‚Æ“]‘—æ‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY‚Íˆê’v‚µ‚Ä‚¢‚Ü‚·B" -ForegroundColor Green
+.\DesktopNotification.ps1
