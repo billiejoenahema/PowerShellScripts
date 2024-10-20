@@ -29,3 +29,6 @@ Copy-Item -Path $sourcePath -Destination $destinationPath -Recurse -Force
 
 # コピー先フォルダ内のファイルを表示
 Dir $destinationPath
+
+# デスクトップ通知
+.\DesktopNotification.ps1

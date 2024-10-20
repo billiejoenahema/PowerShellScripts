@@ -1,26 +1,28 @@
-# 2つのファイルのサイズが一致していること確認するスクリプト
+# 転送先と転送元のファイルサイズが一致していること確認するスクリプト
 
-# 変数設定
-$localFilePath = "C:\Users\Billie\Documents\recovery_code.txt"
-$remoteServer = "user@remote-server.com"
-$remoteFilePath = "C:\Users\Billie\Documents\recovery_code_copy.txt"
+# 転送元ファイルパス
+$sourceFilePath = "C:\Users\Billie\Documents\source_file.txt"
+# 転送先ファイルパス
+$destFilePath = "C:\Users\Billie\Documents\dest_file.txt"
 
-# ローカルファイルのサイズを取得
-$localFileSize = (Get-Item $localFilePath).Length
+# 転送元ファイルのサイズを取得
+$sourceFileSize = (Get-Item $sourceFilePath).Length
 
-# リモートファイルのサイズを取得 (SSH接続を使用)
-# $remoteFileSize = ssh $remoteServer "stat -c%s $remoteFilePath"
-$remoteFileSize = (Get-Item $remoteFilePath).Length
+# 転送先ファイルのサイズを取得
+# $destFileSize = ssh -i $destServerPem $destServerHost "stat -c%s $destFilePath"
+$destFileSize = (Get-Item $destFilePath).Length
 
-Write-Host "転送元: ${localFileSize}"
-Write-Host "転送先: ${remoteFileSize}"
+Write-Host "転送元: ${sourceFileSize}"
+Write-Host "転送先: ${destFileSize}"
 
-# ファイルサイズを比較
-if ($localFileSize -ne $remoteFileSize) {
+# ファイルサイズが一致しなければ処理を中止
+if ($sourceFileSize -ne $destFileSize) {
     Write-Host "転送元と転送先のファイルサイズが一致していません。" -ForegroundColor Red
     .\DesktopNotification.ps1 -message "Error: ファイル転送失敗"
     exit
 }
 
 Write-Host "転送元と転送先のファイルサイズは一致しています。" -ForegroundColor Green
+
+# デスクトップ通知
 .\DesktopNotification.ps1
