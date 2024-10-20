@@ -1,7 +1,9 @@
 # デスクトップ通知を行うスクリプト
 
+# usage: .\DesktopNotification.ps1 -message "デスクトップ通知のメッセージを指定できます。"
+
 param (
-    [string]$message = "処理が完了しました"
+    [string]$message = "処理が終了しました。"
 )
 
 Add-Type -AssemblyName System.Windows.Forms
