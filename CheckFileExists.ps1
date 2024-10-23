@@ -1,11 +1,11 @@
-# ファイルが存在しなければエラー表示とデスクトップ通知を行うスクリプト
+# ファイルの存在をチェックするスクリプト
 
 # フォルダパス
-$folderPath = "C:\Users\Billie\Documents"
+[string]$folderPath = "C:\Users\Billie\Documents"
 
 # ファイルパス
-$file1 = "${folderPath}\file1.txt"
-$file2 = "${folderPath}\file2.txt"
+[string]$file1 = "${folderPath}\file1.txt"
+[string]$file2 = "${folderPath}\file2.txt"
 
 Write-Host "ファイルの存在を確認します。" -ForegroundColor Cyan
 

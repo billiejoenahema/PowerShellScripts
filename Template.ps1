@@ -3,7 +3,7 @@
 # 各バッチのブロック内で複数のバッチにまたがって参照される変数への代入は避ける
 
 # ログファイルのパス
-$logfilePath = ".\logs\logfile.txt"
+[string]$logfilePath = ".\logs\logfile.txt"
 
 # ログの記録を開始
 Start-Transcript -Path $logfilePath | Out-Null

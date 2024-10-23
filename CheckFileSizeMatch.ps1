@@ -1,16 +1,16 @@
 # 転送先と転送元のファイルサイズが一致していること確認するスクリプト
 
 # 転送元ファイルパス
-$sourceFilePath = "C:\Users\Billie\Documents\source_file.txt"
+[string]$sourceFilePath = "C:\Users\Billie\Documents\source_file.txt"
 # 転送先ファイルパス
-$destFilePath = "C:\Users\Billie\Documents\dest_file.txt"
+[string]$destFilePath = "C:\Users\Billie\Documents\dest_file.txt"
 
 # 転送元ファイルのサイズを取得
-$sourceFileSize = (Get-Item $sourceFilePath).Length
+[int]$sourceFileSize = (Get-Item $sourceFilePath).Length
 
 # 転送先ファイルのサイズを取得
 # $destFileSize = ssh -i $destServerPem $destServerHost "stat -c%s $destFilePath"
-$destFileSize = (Get-Item $destFilePath).Length
+[int]$destFileSize = (Get-Item $destFilePath).Length
 
 Write-Host "転送元: ${sourceFileSize}"
 Write-Host "転送先: ${destFileSize}"

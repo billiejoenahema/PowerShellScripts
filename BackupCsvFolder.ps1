@@ -2,13 +2,13 @@
 # コピーに失敗するときは管理者権限で実行すること
 
 # 本日の日付をyyyymmdd形式で取得
-$today = Get-Date -Format "yyyyMMdd"
+[string]$today = Get-Date -Format "yyyyMMdd"
 
 # コピー元のフォルダ
-$sourcePath = "C:\csv"
+[string]$sourcePath = "C:\csv"
 
 # コピー先のパス
-$destinationPath = "C:\Users\Billie\Documents\csv_${today}"
+[string]$destinationPath = "C:\Users\Billie\Documents\csv_${today}"
 
 Write-Host "C:\csvフォルダを[任意のフォルダ]にコピーします。" -ForegroundColor Cyan
 
